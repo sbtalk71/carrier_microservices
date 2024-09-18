@@ -14,4 +14,34 @@ eureka:
      
 logging:
   level:
-    '[org.springframework.cloud]': debug
+    org:
+     springframework:
+      cloud: debug
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+   health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+      
+resilience4j.circuitbreaker:
+    instances:
+       hrBackend:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 3
+            slidingWindowType: COUNT_BASED
+            minimumNumberOfCalls: 3
+            waitDurationInOpenState: 5s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
+            automaticTransitionFromOpenToHalfOpenEnabled: true
+            
+
+       
