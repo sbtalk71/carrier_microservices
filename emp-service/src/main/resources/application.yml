@@ -8,7 +8,7 @@ spring:
       password: ${DB_PASSWORD:sa}
   jpa:
    hibernate:
-      ddl-auto: none
+      ddl-auto: update
    show-sql: true
   h2:
     console:
@@ -22,6 +22,10 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-     defaultZone: http://localhost:8761/eureka/
+     defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
  
 #debug: true
+#DB_DRIVER: com.mysql.jdbc.Driver
+#DB_URL: jdbc:mysql://localhost:3307/testdb
+#DB_USER: root
+#DB_PASSWORD: root
